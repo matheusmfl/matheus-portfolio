@@ -1,12 +1,48 @@
+import Image from 'next/image'
 import { getProjects } from '../../sanity/sanity-utils'
 
 export default async function Home() {
   const projects = await getProjects()
   return (
-    <div>
-      {projects.map((project: any) => {
-        return <div key={project._id}>{project.name}</div>
-      })}
+    <div className="max-w-5xl mx-auto">
+      <h1 className="text-7xl font-extrabold">
+        Olá! Me chamo{' '}
+        <span className="bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent">
+          Matheus Fonteles
+        </span>
+        !
+      </h1>
+
+      <p className="mt-3 text-xl text-gray-600">
+        Eai pessoal! conheça um pouco dos projetos nos quais trabalhei!
+      </p>
+
+      <h2 className="mt-24 font-bold text-gray-700 text-3xl">
+        Confira o portfólio!
+      </h2>
+      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => {
+          return (
+            <div
+              key={project._id}
+              className="border-2 border-gray-500 rounded-lg p-1"
+            >
+              {project.image && (
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  width={750}
+                  height={300}
+                  className="object-cover rounded-lg border border-gray-500"
+                />
+              )}
+              <div className="font-extrabold bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent">
+                {project.name}
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
