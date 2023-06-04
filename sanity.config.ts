@@ -11,6 +11,7 @@ import { deskTool } from 'sanity/desk'
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from './sanity/env'
 import project from './sanity/schema/project-schema'
+import page from './sanity/schema/page-schema'
 
 const config = defineConfig({
   basePath: '/studio',
@@ -18,7 +19,7 @@ const config = defineConfig({
   dataset,
   title: 'Matheus Fonteles Dev',
   // Add and edit the content schema in the './sanity/schema' folder
-  schema: { types: [project] },
+  schema: { types: [project, page] },
   plugins: [
     deskTool(),
     // Vision is a tool that lets you query your content with GROQ in the studio
